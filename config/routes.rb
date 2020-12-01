@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  root to: ""
+  get 'items/index'
+  get 'users/index'
+  get 'user/index'
+  root to: "items#index"
 end
