@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| nickname           | string | null: false | #ニックネーム
-| first_name         | string | null: false | #名
-| last_name          | string | null: false | #苗字
-| first_kana         | string | null: false | #名のカナ
-| last_kana          | string | null: false | #苗字のカナ
-| birthday           | date   | null: false | #誕生日
-| email              | string | null: false | #メールアドレス
-| encrypted_password | string | null: false | #パスワード確認
+| Column             | Type   | Options                       |
+| ------------------ | ------ | ----------------------------- |
+| nickname           | string | null: false                   | #ニックネーム
+| first_name         | string | null: false                   | #名
+| last_name          | string | null: false                   | #苗字
+| first_kana         | string | null: false                   | #名のカナ
+| last_kana          | string | null: false                   | #苗字のカナ
+| birthday           | date   | null: false                   | #誕生日
+| email              | string | null: false, uniqueness: true | #メールアドレス
+| encrypted_password | string | null: false                   | #パスワード確認
 
 
 ### Association
@@ -30,7 +30,7 @@
 | shipping_charges_id | integer    | null: false                    | #配送料の負担
 | days_to_ship_id     | integer    | null: false                    | #発送までの日数
 | price               | integer    | null: false                    | #価格
-| shipping_area_id    | integer    | null: false                    | #発送元の地域
+| prefectures_id      | integer    | null: false                    | #発送元の地域
 | user                | references | null: false, foreign_key: true | #userの外部キー
 
 
