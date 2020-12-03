@@ -4,6 +4,7 @@
 
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
+| nickname           | string | null: false | #ニックネーム
 | first_name         | string | null: false | #名
 | last_name          | string | null: false | #苗字
 | first_kana         | string | null: false | #名のカナ
@@ -35,8 +36,8 @@
 
 ### Association
 
-- belongs_to :users
-- has_one :records
+- belongs_to :user
+- has_one :record
 
 ## records テーブル
 
@@ -47,21 +48,21 @@
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
-- has_one :addresses
+- belongs_to :user
+- belongs_to :item
+- has_one :address
 
 ## addresses テーブル
 
-| Column           | Type    | Options     |
-| ---------------- | ------- | ----------- |
-| postal_code_id   | integer | null: false | #郵便番号
-| phone_number_id  | integer | null: false | #電話番号
-| prefectures_id   | string  | null: false | #都道府県
-| municipality_id  | string  | null: false | #市区町村
-| address_id       | string  | null: false | #番地
-| building_name_id | string  | null: false | #建物名
+| Column         | Type    | Options     |
+| -------------- | ------- | ----------- |
+| postal_code    | string  | null: false | #郵便番号
+| phone_number   | string  | null: false | #電話番号
+| prefectures_id | integer | null: false | #都道府県
+| municipality   | string  | null: false | #市区町村
+| address        | string  | null: false | #番地
+| building_name  | string  |             | #建物名
 
 ### Association
 
-- belongs_to :records
+- belongs_to :record
