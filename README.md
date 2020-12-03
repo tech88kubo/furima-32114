@@ -31,7 +31,7 @@
 | days_to_ship_id     | integer    | null: false                    | #発送までの日数
 | price               | integer    | null: false                    | #価格
 | shipping_area_id    | integer    | null: false                    | #発送元の地域
-| user_id             | references | null: false, foreign_key: true | #userの外部キー
+| user                | references | null: false, foreign_key: true | #userの外部キー
 
 
 ### Association
@@ -41,10 +41,10 @@
 
 ## records テーブル
 
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| user_id | references | null: false, foreign_key: true | #購入者
-| item_id | references | null: false, foreign_key: true | #購入したもの
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true | #購入者
+| item   | references | null: false, foreign_key: true | #購入したもの
 
 ### Association
 
@@ -54,14 +54,15 @@
 
 ## addresses テーブル
 
-| Column         | Type    | Options     |
-| -------------- | ------- | ----------- |
-| postal_code    | string  | null: false | #郵便番号
-| phone_number   | string  | null: false | #電話番号
-| prefectures_id | integer | null: false | #都道府県
-| municipality   | string  | null: false | #市区町村
-| address        | string  | null: false | #番地
-| building_name  | string  |             | #建物名
+| Column         | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| postal_code    | string     | null: false                    | #郵便番号
+| phone_number   | string     | null: false                    | #電話番号
+| prefectures_id | integer    | null: false                    | #都道府県
+| municipality   | string     | null: false                    | #市区町村
+| address        | string     | null: false                    | #番地
+| building_name  | string     |                                | #建物名
+| record         | references | null: false, foreign_key: true | #recordの外部キー
 
 ### Association
 
