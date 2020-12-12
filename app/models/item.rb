@@ -18,6 +18,10 @@ class Item < ApplicationRecord
     validates :days_to_ship_id, numericality: { other_than: 1 }
     validates :prefectures_id, numericality: { other_than: 1 }
     validates :price, format: { with: /\A[0-9]+\z/i, message: "is invalid. Input number."}
-    validates :image
+    validates :image, unless: :was_attached?
+  end
+
+  def was_attached?
+    self.image.attached?
   end
 end
