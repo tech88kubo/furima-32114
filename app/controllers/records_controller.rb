@@ -20,7 +20,7 @@ class RecordsController < ApplicationController
   private
 
   def order_params
-    params.require(:user_order).permit(:postal_code, :phone_number, :prefectures_id, :municipality, :address, :building_name, :price).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:user_order).permit(:postal_code, :phone_number, :prefectures_id, :municipality, :address, :building_name).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def set_item
@@ -30,7 +30,7 @@ class RecordsController < ApplicationController
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
-      amount: order_params[:price],
+      amount: @item.price,
       card: order_params[:token],
       currency: 'jpy'
     )
