@@ -9,6 +9,7 @@ class RecordsController < ApplicationController
   def create
     @user_order = UserOrder.new(order_params)
     if @user_order.valid?
+      pay_item
       @user_order.save
       redirect_to root_path
     else
@@ -19,11 +20,19 @@ class RecordsController < ApplicationController
   private
 
   def order_params
-    params.require(:user_order).permit(:postal_code, :phone_number, :prefectures_id, :municipality, :address, :building_name).merge(user_id: current_user.id, item_id: params[:item_id])
+    params.require(:user_order).permit(:postal_code, :phone_number, :prefectures_id, :municipality, :address, :building_name, :price).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def set_item
     @item = Item.find(params[:item_id])
   end
 
+  def pay_item
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp::Charge.create(
+      amount: order_params[:price],
+      card: order_params[:token],
+      currency: 'jpy'
+    )
+  end
 end
