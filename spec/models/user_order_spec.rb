@@ -66,7 +66,7 @@ RSpec.describe UserOrder, type: :model do
       it "tokenが空では登録できないこと" do
         @user_order.token = nil
         @user_order.valid?
-        expect(@order.errors.full_messages).to include("Token can't be blank")
+        expect(@user_order.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
