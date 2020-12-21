@@ -9,6 +9,8 @@ class UserOrder
     validates :municipality
     validates :address
     validates :token
+    validates :user_id
+    validates :item_id
   end
 
   def save
