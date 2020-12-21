@@ -24,6 +24,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if @item.record.present? && user_signed_in?
+      redirect_to root_path
+    end
   end
 
   def update
