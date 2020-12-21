@@ -39,11 +39,21 @@ RSpec.describe UserOrder, type: :model do
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include("Phone number is invalid.") 
       end
+      it 'phone_numberが英数混合だと保存できないこと' do
+        @user_order.phone_number = "090abcd5678"
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("Phone number is invalid.") 
+      end
 
       it 'prefectures_idを選択していないと保存できないこと' do
         @user_order.prefectures_id = nil
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include("Prefectures can't be blank", "Prefectures is not a number") 
+      end
+      it 'prefectures_idが1だと保存できないこと' do
+        @user_order.prefectures_id = 1
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("Prefectures must be other than 1") 
       end
 
       it 'municipalityが空だと保存できないこと' do
